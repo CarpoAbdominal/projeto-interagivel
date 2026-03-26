@@ -72,69 +72,67 @@ gsap.from(".card", {
 });
 
 
-// --- 4. EFEITO 3D NOS CARDS E INTERAÇÃO DE CLIQUE ---
+// --- 4. EFEITO 3D NOS CARDS E INTERAÇÃO DE CLIQUE (MOBILE FIRST) ---
 const cards = document.querySelectorAll(".card");
-let activeCard = null; // Variável para lembrar qual card está clicado
+let activeCard = null;
+
+// A MÁGICA: Verifica se o dispositivo usa mouse (suporta "hover")
+const isDesktop = window.matchMedia("(any-hover: hover)").matches;
 
 cards.forEach((card) => {
-  // 1. O efeito de movimento do mouse (Tilt)
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+  
+  // 1. Efeitos de Mouse (Tilt) - SÓ RODA SE TIVER MOUSE (Desktop)
+  if (isDesktop) {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
 
-    const rotateX = (y / rect.height) * -30;
-    const rotateY = (x / rect.width) * 30;
+      const rotateX = (y / rect.height) * -30;
+      const rotateY = (x / rect.width) * 30;
 
-    gsap.to(card, { rotationX: rotateX, rotationY: rotateY, duration: 0.5, ease: "power2.out" });
+      gsap.to(card, { rotationX: rotateX, rotationY: rotateY, duration: 0.5, ease: "power2.out" });
 
-    const image = card.querySelector(".card-image");
-    if(image) {
-      gsap.to(image, { x: (x / rect.width) * -20, y: (y / rect.height) * -20, duration: 0.5, ease: "power2.out" });
-    }
-  });
+      const image = card.querySelector(".card-image");
+      if(image) {
+        gsap.to(image, { x: (x / rect.width) * -20, y: (y / rect.height) * -20, duration: 0.5, ease: "power2.out" });
+      }
+    });
 
-  // 2. Quando o mouse sai
-  card.addEventListener("mouseleave", () => {
-    gsap.to(card, { rotationX: 0, rotationY: 0, duration: 0.5, ease: "power2.out" });
-    const imageOut = card.querySelector(".card-image");
-    if(imageOut) { gsap.to(imageOut, { x: 0, y: 0, duration: 0.5, ease: "power2.out" }); }
-  });
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, { rotationX: 0, rotationY: 0, duration: 0.5, ease: "power2.out" });
+      const imageOut = card.querySelector(".card-image");
+      if(imageOut) { gsap.to(imageOut, { x: 0, y: 0, duration: 0.5, ease: "power2.out" }); }
+    });
+  }
 
-  // 3. A NOVIDADE: Interação de Clique (Focus Mode)
+  // 2. Interação de Clique (Focus Mode) - RODA EM TODOS (Mobile e Desktop)
   card.addEventListener("click", () => {
     if (activeCard === card) {
-      // Se clicou no card que JÁ ESTAVA ativo, desfaz o efeito (Deselect)
       gsap.to(card, { y: 0, scale: 1, boxShadow: "none", duration: 0.5, ease: "back.out(1.7)" });
-      gsap.to(cards, { opacity: 1, scale: 1, duration: 0.5 }); // Volta os outros ao normal
+      gsap.to(cards, { opacity: 1, scale: 1, duration: 0.5 }); 
       activeCard = null;
     } else {
-      // Se clicou num card novo...
-      
-      // A) Se já tinha outro ativo antes, abaixa ele
       if (activeCard) {
         gsap.to(activeCard, { y: 0, scale: 1, boxShadow: "none", duration: 0.5 });
       }
       
-      // B) Escurece e encolhe TODOS os cards que não são o clicado
       const otherCards = Array.from(cards).filter(c => c !== card);
       gsap.to(otherCards, { opacity: 0.3, scale: 0.9, duration: 0.5, ease: "power2.out" });
 
-      // C) Destaca o card clicado (pula pra cima, aumenta e brilha)
       gsap.to(card, {
-        y: -40, // Move 40px pra cima
-        scale: 1.05, // Aumenta 5%
-        boxShadow: "0px 30px 60px rgba(0, 255, 136, 0.4)", // Sombra neon premium
-        opacity: 1, // Garante que ele fique 100% visível
+        y: -20, // Subindo um pouco menos no mobile para não cortar na tela
+        scale: 1.05,
+        boxShadow: "0px 20px 40px rgba(0, 255, 136, 0.4)",
+        opacity: 1,
         duration: 0.5,
-        ease: "back.out(1.7)" // Dá aquele efeitinho de "mola" (bounce)
+        ease: "back.out(1.7)"
       });
       
-      activeCard = card; // Salva este como o novo card ativo
+      activeCard = card;
     }
   });
 });
-
 // --- 5. BOTÃO MAGNÉTICO ---
 const magBtn = document.querySelector(".magnetic-btn");
 const magText = document.querySelector(".btn-text");
