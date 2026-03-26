@@ -209,3 +209,41 @@ gsap.to(".product-image", {
   scale: 1, // Volta do 1.3 pro 1.0 original
   ease: "none"
 });
+
+// --- 7. ANIMAÇÕES DE SCROLL: PRODUTO E CONTATO ---
+
+// Animação da Seção de Produto (Texto vem da esquerda, Imagem da direita)
+gsap.from(".product-content", {
+  scrollTrigger: {
+    trigger: ".product-section",
+    start: "top 80%", // Inicia a animação quando a seção chegar em 80% da tela
+  },
+  x: -100, // Começa 100px para a esquerda
+  opacity: 0,
+  duration: 1.2,
+  ease: "power3.out"
+});
+
+gsap.from(".product-image-wrapper", {
+  scrollTrigger: {
+    trigger: ".product-section",
+    start: "top 80%",
+  },
+  x: 100, // Começa 100px para a direita
+  opacity: 0,
+  duration: 1.2,
+  ease: "power3.out",
+  delay: 0.3 // Um pequeno atraso para a imagem entrar logo depois do texto
+});
+
+// Animação da Seção de Contato / Footer (Sobe suavemente)
+gsap.from(".contact-container", {
+  scrollTrigger: {
+    trigger: ".contact-section",
+    start: "top 90%",
+  },
+  y: 50, // Começa 50px para baixo
+  opacity: 0,
+  duration: 1,
+  ease: "power3.out"
+});

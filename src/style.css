@@ -196,3 +196,138 @@ body {
   background-position: center;
   transform: scale(1.3); /* Preparado para o parallax reduzir */
 }
+
+/* --- ESTILOS DO PRODUTO E CONTATO --- */
+
+/* Seção de Produto */
+.product-section {
+  padding: 100px 5%;
+  background-color: #0a0a0a; /* Fundo bem escuro */
+  color: #ffffff;
+}
+
+.product-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-content {
+  flex: 1;
+}
+
+.product-content h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #ffffff, #00ff88);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.product-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+}
+
+.product-benefits li {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #cccccc;
+}
+
+.product-image-wrapper {
+  flex: 1;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 255, 136, 0.2);
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.product-image:hover {
+  transform: scale(1.05); /* Dá um zoom leve quando passa o mouse */
+}
+
+/* Botão Premium (se você já tiver um, pode ignorar este) */
+.btn-premium {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #00ff88;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-premium:hover {
+  background-color: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 255, 136, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Seção de Contato */
+.contact-section {
+  padding: 80px 5%;
+  background-color: #050505;
+  text-align: center;
+  color: #fff;
+}
+
+.contact-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-form {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.contact-input {
+  padding: 15px 20px;
+  width: 60%;
+  border-radius: 30px;
+  border: 1px solid #333;
+  background-color: #111;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+
+.contact-input:focus {
+  border-color: #00ff88;
+}
+
+.footer-bottom {
+  margin-top: 60px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsividade (Para ficar bonito no celular) */
+@media (max-width: 768px) {
+  .product-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .contact-form {
+    flex-direction: column;
+  }
+  .contact-input {
+    width: 100%;
+  }
+}
