@@ -437,3 +437,54 @@ body {
     padding: 0 20px;
   }
 }
+
+/* =========================================
+   ESTILO DO MENU (NAVBAR)
+   ========================================= */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between; /* Joga o logo pra um lado e o menu pro outro */
+  align-items: center;
+  z-index: 100;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px; /* Espaçamento entre os nomes do menu */
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  cursor: none; /* Mantém o cursor personalizado se você estiver usando */
+}
+
+.nav-links a:hover {
+  color: #00ff88; /* Cor verde neon ao passar o mouse */
+}
+
+/* Ajuste no logo para não ficar colado */
+.logo {
+  margin: 0; 
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+}
+
+/* Responsividade simples: se a tela for pequena, o menu desce */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+}
