@@ -122,6 +122,8 @@ body {
   display: flex;
   white-space: nowrap;
   width: fit-content;
+  /* ESSA É A LINHA QUE FALTAVA: O motor da animação! */
+  animation: scrollText 15s linear infinite;
 }
 
 .marquee-content h1 {
@@ -129,6 +131,12 @@ body {
   margin: 0;
   padding-right: 20px;
   text-transform: uppercase;
+}
+
+/* ESSA É A ENGRENAGEM: Diz como o texto deve se mover */
+@keyframes scrollText {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
 }
 
 /* =========================================
