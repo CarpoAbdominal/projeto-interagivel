@@ -61,84 +61,60 @@ body {
 }
 
 /* =========================================
-   3. TELA 1 (HERO)
+   3. TELA 1 (HERO) - Ajuste de Espaço
    ========================================= */
 #app {
-  height: 100vh;
+  min-height: 100vh; /* Mudamos para min-height para garantir espaço */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-}
-
-.logo {
-  font-size: 4rem;
-  margin: 0;
-  z-index: 10;
-  text-align: center;
-}
-
-.box {
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(45deg, #00ff88, #00bdff);
-  border-radius: 12px;
-  z-index: 10;
-}
-
-.magnetic-btn {
-  padding: 20px 40px;
-  background-color: transparent;
-  border: 1px solid rgba(255,255,255, 0.3);
-  color: #fff;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  cursor: none; /* Usa nosso cursor customizado */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn-text { 
-  pointer-events: none; 
+  gap: 30px;
+  padding-bottom: 80px; /* Adicionamos esse recuo para o marquee não bater nos botões */
 }
 
 /* =========================================
-   4. LETREIRO INFINITO (MARQUEE)
+   4. LETREIRO INFINITO (MARQUEE) - Com Animação
    ========================================= */
 .marquee-section {
   width: 100%;
   overflow: hidden;
   background: #00ff88;
   color: #000;
-  padding: 15px 0;
-  transform: rotate(-3deg) scale(1.05); /* Deixa a faixa tortinha */
+  padding: 20px 0;
+  /* O rotate e o scale continuam aqui, mas o padding do #app resolve o conflito */
+  transform: rotate(-3deg) scale(1.05); 
   position: relative;
-  z-index: 10;
+  z-index: 5; /* Ajustado para não sobrepor o cursor */
+  margin-top: -20px; /* Ajuste fino de posição */
 }
 
 .marquee-content {
   display: flex;
   white-space: nowrap;
   width: fit-content;
-  /* ESSA É A LINHA QUE FALTAVA: O motor da animação! */
-  animation: scrollText 15s linear infinite;
+  /* A ANIMAÇÃO VOLTOU! */
+  animation: scrollText 20s linear infinite;
 }
 
 .marquee-content h1 {
   font-size: 4rem;
   margin: 0;
-  padding-right: 20px;
+  padding-right: 50px; /* Espaço entre as frases */
   text-transform: uppercase;
+  font-family: 'Impact', sans-serif; /* Opcional: Deixa mais industrial */
 }
 
-/* ESSA É A ENGRENAGEM: Diz como o texto deve se mover */
+/* A ENGRENAGEM DA ANIMAÇÃO */
 @keyframes scrollText {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); } 
 }
 
+/* Ajuste extra para os botões não ficarem colados */
+.magnetic-btn {
+  margin-bottom: 10px;
+}
 /* =========================================
    5. TELA 2 (CARDS 3D)
    ========================================= */
